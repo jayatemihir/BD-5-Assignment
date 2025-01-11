@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 let nextUserID = 1;
 let nextPostID = 1;
@@ -56,12 +59,12 @@ app.put('/users/:id/posts/:postID', (request, response) => {
 });
 
 // Delete
-app.delete('/users/:id', (requests, response) => {
+app.delete('/users/:id', (request, response) => {
   const id = request.params.id;
   response.json({ message: `User with ID ${id} deleted successfully` });
 });
 
-app.delete('/users/:id/posts', (requests, response) => {
+app.delete('/users/:id/posts', (request, response) => {
   const id = request.params.id;
   response.json({ message: `All posts deleted for user ID: ${id}` });
 });
